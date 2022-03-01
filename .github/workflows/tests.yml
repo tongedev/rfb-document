@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        php: ['7.3','7.4','8.0','8.1']
+        php: ['7.4','8.0','8.1']
         dependency-version: [prefer-stable]
 
     name: Tests with PHP ${{ matrix.php }}
@@ -28,7 +28,7 @@ jobs:
         coverage: none
 
     - name: Install PHP dependencies
-      run: composer install --${{ matrix.dependency-version }} --ignore-platform-req=php --no-interaction --no-progress
+      run: composer install --ignore-platform-req=php --no-interaction --no-progress
 
     - name: Running tests
       run: vendor/bin/pest --colors=always
