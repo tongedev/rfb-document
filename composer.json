@@ -1,7 +1,17 @@
 {
     "name": "tongedev/rfb-document",
     "description": "Pacote para validar/gerar/formatar RG e CPF",
+    "keywords": [
+        "php",
+        "document",
+        "cpf",
+        "cnpj",
+        "generate",
+        "validation",
+        "format"
+    ],
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Tom Benevides",
@@ -22,7 +32,11 @@
         "pestphp/pest": "^1.21",
         "infection/infection": "^0.26.5"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "infection/extension-installer": true
