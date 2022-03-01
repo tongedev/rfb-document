@@ -1,2 +1,1 @@
-# rfb-document
-Um pacote Laravel para validar/gerar/formatar um número de documento da Receita Federal (RG/CPF)
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://banners.beyondco.de/RFB%20Document.png?theme=light&packageManager=composer+require&packageName=tongedev%2Frfb-document&pattern=architect&style=style_1&description=+valide%2Fgere%2Fformate+um+n%C3%BAmero+de+RG%2FCPF&md=1&showWatermark=0&fontSize=100px&images=identification" width="650"></a></p>
