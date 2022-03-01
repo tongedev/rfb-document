@@ -29,8 +29,20 @@
         }
     },
     "require-dev": {
-        "pestphp/pest": "^1.21",
-        "infection/infection": "^0.26.5"
+        "infection/infection": "^0.26.5",
+        "orchestra/testbench": "^7.1",
+        "pestphp/pest": "^1.21"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tongedev\\RfbDocument\\RfbDocumentServiceProvider"
+            ],
+            "aliases": {
+                "CPF": "Tongedev\\RfbDocument\\Facade\\CPF",
+                "CNPJ": "Tongedev\\RfbDocument\\Facade\\CNPJ"
+            }
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -41,5 +53,10 @@
             "pestphp/pest-plugin": true,
             "infection/extension-installer": true
         }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php ./vendor/bin/testbench package:discover --ansi"
+        ]
     }
 }
