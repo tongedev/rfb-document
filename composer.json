@@ -1,0 +1,29 @@
+{
+    "name": "tongedev/rfb-document",
+    "description": "Pacote para validar/gerar/formatar RG e CPF",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Tom Benevides",
+            "email": "eltonfelixbenevides@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Tongedev\\RfbDocument\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tongedev\\RfbDocument\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.21"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
