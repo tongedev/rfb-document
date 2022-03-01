@@ -1,3 +1,4 @@
 vendor/
 tg
 .phpunit.result.cache
+docker/

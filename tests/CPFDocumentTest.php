@@ -1,14 +1,20 @@
 <?php
 
 
-it('should generate a CPF', function () {
+it('should generate a sanitized CPF', function () {
     $documentClass = new \Tongedev\RfbDocument\CPFDocument();
 
     $generatedCPF = $documentClass->generate();
 
-    echo $generatedCPF;
+    expect($generatedCPF)->toMatch('/^[0-9]{11}$/i');
+})->group('cpf', 'generation');
 
-    expect(strlen($generatedCPF))->toBe(11);
+it('should generate a formatted CPF', function () {
+    $documentClass = new \Tongedev\RfbDocument\CPFDocument();
+
+    $generatedCPF = $documentClass->generate(true);
+
+    expect($generatedCPF)->toMatch('/^[0-9]{3}(\.?[0-9]{3}){2}\-?[0-9]{2}$/i');
 })->group('cpf', 'generation');
 
 it('should sanitize a given CPF', function () {

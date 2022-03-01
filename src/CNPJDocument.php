@@ -2,27 +2,19 @@
 
 namespace Tongedev\RfbDocument;
 
-use Tongedev\RfbDocument\Contracts\DocumentContract;
-
-class CNPJDocument implements DocumentContract
+class CNPJDocument extends Document
 {
-    public function generate(bool $formatted = true): string
-    {
-        return 'teste';
-    }
+   protected int $size = 14;
+   
+    protected int $prefixSize = 12;
 
-    public function sanitize(string $documentNumber): string
-    {
-        return str_replace(['.', '-','/'], '', $documentNumber);
-    }
+    protected string $format = '%s%s.%s%s%s.%s%s%s/%s%s%s%s-%s%s';
 
-    public function format(string $documentNumber): string
-    {
-        return vsprintf('%s%s.%s%s%s.%s%s%s/%s%s%s%s-%s%s', str_split($documentNumber));
-    }
+    protected string $regexMatch = '/^[0-9]{14}$/i';
 
-    public function validate(string $documentNumber): bool
-    {
-        return true;
-    }
+    protected array $prefixRange = [100000000000, 999999999999];
+
+    protected array $weithedValues = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+
+    protected int $additionalWeith = 6;
 }
