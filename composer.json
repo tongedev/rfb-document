@@ -28,6 +28,9 @@
             "Tongedev\\RfbDocument\\Tests\\": "tests/"
         }
     },
+    "require": {
+        "php": "^8.0"
+    },
     "require-dev": {
         "infection/infection": "^0.26.5",
         "orchestra/testbench": "^7.1",
