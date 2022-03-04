@@ -1,71 +1,42 @@
 <?php
 
+it('should generate a sanitized CPF')
+    ->group('cpf', 'generation')
+    ->expect(fn () => cpf()->generate())->toMatch('/^[0-9]{11}$/i');
 
-it('should generate a sanitized CPF', function () {
-    $documentClass = new \Tongedev\RfbDocument\CPFDocument();
+it('should generate a formatted CPF')
+    ->group('cpf', 'generation')
+    ->expect(fn () => cpf()->generate(true))
+    ->toMatch('/^[0-9]{3}(\.?[0-9]{3}){2}\-?[0-9]{2}$/i');
 
-    $generatedCPF = $documentClass->generate();
+it('should sanitize a given CPF')
+    ->group('cpf', 'sanitization')
+    ->expect(fn () => cpf()->sanitize('123.456.789-10'))
+    ->toBe('12345678910');
 
-    expect($generatedCPF)->toMatch('/^[0-9]{11}$/i');
-})->group('cpf', 'generation');
+it('should format a given CPF')
+    ->group('cpf', 'formatting')
+    ->expect(fn () => cpf()->format('12345678910'))
+    ->toBe('123.456.789-10');
 
-it('should generate a formatted CPF', function () {
-    $documentClass = new \Tongedev\RfbDocument\CPFDocument();
+it('should invalidate a wrong sanitized CPF')
+    ->group('cpf', 'validation')
+    ->expect(fn () => cpf()->validate('65789602111'))
+    ->toBeFalse();
 
-    $generatedCPF = $documentClass->generate(true);
+it('should validate a properly sanitized CPF')
+    ->group('cpf', 'validation')
+    ->tap(fn () => $this->cpf = cpf()->generate())
+    ->expect(fn () => cpf()->validate($this->cpf))
+    ->toBeTrue();
 
-    expect($generatedCPF)->toMatch('/^[0-9]{3}(\.?[0-9]{3}){2}\-?[0-9]{2}$/i');
-})->group('cpf', 'generation');
+it('should invalidate a wrong formatted CPF')
+    ->group('cpf', 'validation')
+    ->expect(fn () => cpf()->validate('657.896.021-11'))
+    ->toBeFalse();
 
-it('should sanitize a given CPF', function () {
-   $documentClass = new \Tongedev\RfbDocument\CPFDocument();
-
-   $sanitizedCPF = $documentClass->sanitize('123.456.789-10');
-
-    expect($sanitizedCPF)->toBe('12345678910');
-})->group('cpf', 'sanitization');	
-
-it('should format a given CPF', function () {
-    $documentClass = new \Tongedev\RfbDocument\CPFDocument();
-
-    $formattedCPF = $documentClass->format('12345678910');
-
-    expect($formattedCPF)->toBe('123.456.789-10');
-})->group('cpf', 'formatting');
-
-it('should invalidate a wrong sanitized CPF', function () {
-    $documentClass = new \Tongedev\RfbDocument\CPFDocument();
-
-    $validatedCPF = $documentClass->validate('65789602111');
-
-    expect($validatedCPF)->toBeFalse();
-})->group('cpf', 'validation');
-
-it('should validate a right sanitized CPF', function () {
-    $documentClass = new \Tongedev\RfbDocument\CPFDocument();
-
-    $cpf = $documentClass->generate();
-
-    $validatedCPF = $documentClass->validate($cpf);
-
-    expect($validatedCPF)->toBeTrue();
-})->group('cpf', 'validation');
-
-it('should invalidate a wrong formatted CPF', function () {
-    $documentClass = new \Tongedev\RfbDocument\CPFDocument();
-
-    $validatedCPF = $documentClass->validate('657.896.021-11');
-
-    expect($validatedCPF)->toBeFalse();
-
-})->group('cpf', 'validation');
-
-it('should validate a right formatted CPF', function () {
-    $documentClass = new \Tongedev\RfbDocument\CPFDocument();
-
-    $cpf = $documentClass->generate(true);
-
-    $validatedCPF = $documentClass->validate($cpf);
-
-    expect($validatedCPF)->toBeTrue();
-})->group('cpf', 'validation');
+it('should validate a right formatted CPF')
+    ->group('cpf', 'validation')
+    ->tap(fn () => $this->cpf = cpf()->generate(true))
+    ->expect(fn () => cpf()->validate($this->cpf))
+    ->toBeTrue();

@@ -13,14 +13,13 @@
 
 **RFB Document** é um pacote que te ajuda a lidar com números de cadastro da Receita Federal do Brasil, CPF (cadastro de pessoa física) e CNPJ (cadastro nacional de pessoa jurídica). Através dele é possível gerar números de CPF/CNPJ válidos, validar um número existente e formatá-los. Tudo de maneira simples e prática.
 
-> p.s. o pacote verifica se o número de cadastro é válido e não se está atrelado a uma pessoa em específico.
-
+> ❗ IMPORTANTE:  Este pacote não realiza nenhuma consulta na Receita Federal, portanto, não verifica a situação atual do documento ou se o mesmo está atrelado a uma pessoa ou empresa específica. Toda a checagem é baseada no algorítimo utilizado para gerar os números de cadastro.
 
 ## Requisitos
 
 > **Requer [PHP 8.0+](https://www.php.net/releases/)**
 
-Em caso de aplicações Laravel, existe o requisito da versão do framework.
+Se você usa o Laravel, verifique a compatibilidade de versões:
 
 | Laravel | RFB Document |
 |---------|--------------|
@@ -29,7 +28,7 @@ Em caso de aplicações Laravel, existe o requisito da versão do framework.
 
 ## Instalação
 
-Para instalar o pacote, basta usar o gerenciador composer:
+Para instalar o pacote, basta usar o [composer](https://getcomposer.org):
 
 ```bash
 composer require tongedev/rfb-document
@@ -74,11 +73,19 @@ Os recursos disponíveis são: geração de um novo documento válido, sanitiza�
 | generate() | bool   \| formatted (default: false) | documento, formatado ou não (string) |
 | sanitize() | string \| documentNumber             | documento sanitizado (string)        |
 | format()   | string \| documentNumber             | documento formatado (string)         |
-| validate() | string \| documentNumber             | se documento é válido ou não (bool)  |
+| validate() | string \| documentNumber             | (bool) se documento é válido (true) ou não (false)  |
+
+Todos os exemplos abaixo funcionam para `CPF` e `CPNJ`, bastando apenas alterar a classe utilizada.
 
 ```php
 $cpf = CPF::generate(); // retorno: xxxxxxxxxxx (cpf sanitizado)
 
+$cnpj = CNPJ::generate(); // retorno: xxxxxxxxxxxxxxx (cnpj sanitizado)
+```
+
+E os demais métodos:
+
+```php
 $cpf = CPF::generate(true); // retorno: xxx.xxx.xxx-xx (cpf formatado)
 
 $cpf = CPF::sanitized('xxx.xxx.xxx-xx'); // retorno: xxxxxxxxxxx (cpf sanitizado)
@@ -89,8 +96,6 @@ $cpf = CPF::validate('xxx.xxx.xxx-xx'); // retorno: booleano dependendo do valor
 
 $cpf = CPF::validate('xxxxxxxxxxx'); // é possível passar documento sanitizado também para validação
 ```
-
-> e como dito antes, tudo que é feito com CPF, pode-se aplicar ao CNPJ.
 
 ## Exceções
 
@@ -104,7 +109,7 @@ $cpf = CPF::format('123456ASasdfas'); // esse código irá gerar uma exceção d
 
 Obrigado por considerar contribuir para o RFB Document. Tudo sobre contribuições está descrito [aqui](CONTRIBUTING.md).
 
-Você também pode me seguir no Twitter para saber das últimas notícias, no que mais estou trabalhando ou só pra dizer um Oi!: [@tongedev](https://twitter.com/tongedev)
+👋 Siga o autor [@tongedev](https://twitter.com/tongedev) no Twitter para saber das últimas novidades e conhecer outros projetos. Diga oi!
 
 ## Licença
 
