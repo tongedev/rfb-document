@@ -1,6 +1,5 @@
 <?php
 
-
 it('should generate a sanitized CPF')
     ->group('cpf', 'generation')
     ->expect(fn () => cpf()->generate())->toMatch('/^[0-9]{11}$/i');
@@ -30,7 +29,6 @@ it('should validate a properly sanitized CPF')
     ->tap(fn () => $this->cpf = cpf()->generate())
     ->expect(fn () => cpf()->validate($this->cpf))
     ->toBeTrue();
-
 
 it('should invalidate a wrong formatted CPF')
     ->group('cpf', 'validation')

@@ -13,13 +13,13 @@
 
 **RFB Document** é um pacote que te ajuda a lidar com números de cadastro da Receita Federal do Brasil, CPF (cadastro de pessoa física) e CNPJ (cadastro nacional de pessoa jurídica). Através dele é possível gerar números de CPF/CNPJ válidos, validar um número existente e formatá-los. Tudo de maneira simples e prática.
 
-> ❗ IMPORTANTE:  Este pacote não realiza nenhuma consulta na Receita Federal, portanto, não verifica a situação atual do documento ou se o mesmo está atrelado a uma pessoa ou empresa específico. Toda a checagem é baseada no algorítimo utilizado para gerar os números de cadastro.
+> ❗ IMPORTANTE:  Este pacote não realiza nenhuma consulta na Receita Federal, portanto, não verifica a situação atual do documento ou se o mesmo está atrelado a uma pessoa ou empresa específica. Toda a checagem é baseada no algorítimo utilizado para gerar os números de cadastro.
 
 ## Requisitos
 
 > **Requer [PHP 8.0+](https://www.php.net/releases/)**
 
-Em caso de aplicações Laravel, existe o requisito da versão do framework.
+Se você usa o Laravel, verifique a compatibilidade de versões:
 
 | Laravel | RFB Document |
 |---------|--------------|
@@ -73,13 +73,19 @@ Os recursos disponíveis são: geração de um novo documento válido, sanitiza�
 | generate() | bool   \| formatted (default: false) | documento, formatado ou não (string) |
 | sanitize() | string \| documentNumber             | documento sanitizado (string)        |
 | format()   | string \| documentNumber             | documento formatado (string)         |
-| validate() | string \| documentNumber             | se documento é válido ou não (bool)  |
+| validate() | string \| documentNumber             | (bool) se documento é válido (true) ou não (false)  |
 
-Os exemplos funcionam para `CPF` e também para `CPNJ`, bastando apenas alterar a classe chamada.
+Todos os exemplos abaixo funcionam para `CPF` e `CPNJ`, bastando apenas alterar a classe utilizada.
 
 ```php
 $cpf = CPF::generate(); // retorno: xxxxxxxxxxx (cpf sanitizado)
 
+$cnpj = CNPJ::generate(); // retorno: xxxxxxxxxxxxxxx (cnpj sanitizado)
+```
+
+E os demais métodos:
+
+```php
 $cpf = CPF::generate(true); // retorno: xxx.xxx.xxx-xx (cpf formatado)
 
 $cpf = CPF::sanitized('xxx.xxx.xxx-xx'); // retorno: xxxxxxxxxxx (cpf sanitizado)
