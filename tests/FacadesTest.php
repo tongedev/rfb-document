@@ -6,14 +6,12 @@ use Tongedev\RfbDocument\Tests\LaravelTestCase;
 
 uses(LaravelTestCase::class);
 
-it('should validate a CPF using facade', function () {
-    $cpf = CPF::generate(true);
+it('should validate a CPF using facade')
+    ->tap(fn() => $this->cpf = CPF::generate(true))
+    ->expect(fn() => CPF::validate($this->cpf))
+    ->toBeTrue();
 
-    expect(CPF::validate($cpf))->toBeTrue();
-});
-
-it('should validate a CNPJ using facade', function () {
-    $cnpj = CNPJ::generate(true);
-
-    expect(CNPJ::validate($cnpj))->toBeTrue();
-});
+it('should validate a CNPJ using facade')
+    ->tap(fn() => $this->cnpj = CNPJ::generate(true))
+    ->expect(fn() => CNPJ::validate($this->cnpj))
+    ->toBeTrue();
