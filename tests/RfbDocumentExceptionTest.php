@@ -1,31 +1,23 @@
-<?php 
+<?php
 
 use Tongedev\RfbDocument\Exceptions\RfbDocumentException;
 
-it('should throw an exception for an invalid CPF during formatting', function (){
-    $documentClass = new Tongedev\RfbDocument\CPFDocument();
+it('should throw an exception for an invalid CPF during formatting')
+    ->group('cpf', 'formatting', 'exceptions')
+    ->expect(fn () => cpf()->format('12345adeffg'))
+    ->throws(RfbDocumentException::class, 'The given document is invalid.');
 
-    expect(fn() => $documentClass->format('12345adeffg'))
-        ->toThrow(RfbDocumentException::class, 'The given document is invalid.');
-})->group('cpf', 'formatting', 'exceptions');
+it('should throw an exception for an invalid CPF during validation')
+    ->group('cpf', 'validation', 'exceptions')
+    ->expect(fn () => cpf()->validate('12345adeffg'))
+    ->throws(RfbDocumentException::class, 'The given document is invalid.');
 
-it('should throw an exception for an invalid CPF during validation', function (){
-    $documentClass = new Tongedev\RfbDocument\CPFDocument();
+it('should throw an exception for an invalid CNPJ during formatting')
+    ->group('cnpj', 'formatting', 'exceptions')
+    ->expect(fn () => cpnj()->format('12345adeffg'))
+    ->throws(RfbDocumentException::class, 'The given document is invalid.');
 
-    expect(fn() => $documentClass->validate('12345adeffg'))
-        ->toThrow(RfbDocumentException::class, 'The given document is invalid.');
-})->group('cpf', 'validation', 'exceptions');
-
-it('should throw an exception for an invalid CNPJ during formatting', function (){
-    $documentClass = new Tongedev\RfbDocument\CNPJDocument();
-
-    expect(fn() => $documentClass->format('12345adeffg'))
-        ->toThrow(RfbDocumentException::class, 'The given document is invalid.');
-})->group('cnpj', 'formatting', 'exceptions');
-
-it('should throw an exception for an invalid CNPJ during validation', function (){
-    $documentClass = new Tongedev\RfbDocument\CNPJDocument();
-
-    expect(fn() => $documentClass->validate('12345adeffg'))
-        ->toThrow(RfbDocumentException::class, 'The given document is invalid.');
-})->group('cnpj', 'validation', 'exceptions');
+it('should throw an exception for an invalid CNPJ during validation')
+    ->group('cnpj', 'validation', 'exceptions')
+    ->expect(fn () => cpnj()->validate('12345adeffg'))
+    ->throws(RfbDocumentException::class, 'The given document is invalid.');
