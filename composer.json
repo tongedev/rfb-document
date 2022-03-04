@@ -29,13 +29,13 @@
         }
     },
     "require": {
-        "php": "^8.0",
-        "friendsofphp/php-cs-fixer": "^3.6"
+        "php": "^8.0"
     },
     "require-dev": {
         "infection/infection": "^0.26.5",
         "orchestra/testbench": "^7.1",
-        "pestphp/pest": "^1.21"
+        "pestphp/pest": "^1.21",
+        "friendsofphp/php-cs-fixer": "^3.6"
     },
     "extra": {
         "laravel": {
