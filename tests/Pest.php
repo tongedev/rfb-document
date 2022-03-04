@@ -9,7 +9,7 @@ use Tongedev\RfbDocument\CNPJDocument;
 |--------------------------------------------------------------------------
 */
 
-function cpnj(): CNPJDocument
+function cnpj(): CNPJDocument
 {
     return new CNPJDocument();
 }
