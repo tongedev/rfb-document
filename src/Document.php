@@ -125,7 +125,7 @@ abstract class Document
         $sum = 0;
         $multipliers = $this->weithedValues;
 
-        if(count($documentPrefix) === ($this->size - 1)) {
+        if (count($documentPrefix) === ($this->size - 1)) {
             array_unshift($multipliers, $this->additionalWeith);
         }
 
@@ -139,7 +139,7 @@ abstract class Document
 
         array_push($documentPrefix, $digit);
 
-        if(count($documentPrefix) !== $this->size) {
+        if (count($documentPrefix) !== $this->size) {
             return $this->addVerifyingDigits($documentPrefix);
         }
 
@@ -157,7 +157,7 @@ abstract class Document
     {
         $sanitizedDocument = $this->sanitize($documentNumber);
 
-        if(preg_match($this->regexMatch, $sanitizedDocument) !== 1) {
+        if (preg_match($this->regexMatch, $sanitizedDocument) !== 1) {
             throw new RfbDocumentException('The given document is invalid.');
         }
     }

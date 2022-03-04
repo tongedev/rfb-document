@@ -29,7 +29,8 @@
         }
     },
     "require": {
-        "php": "^8.0"
+        "php": "^8.0",
+        "friendsofphp/php-cs-fixer": "^3.6"
     },
     "require-dev": {
         "infection/infection": "^0.26.5",
@@ -58,6 +59,8 @@
         }
     },
     "scripts": {
+        "lint": "php-cs-fixer fix -v",
+        "test:lint": "php-cs-fixer fix -vv --dry-run",
         "post-autoload-dump": [
             "@php ./vendor/bin/testbench package:discover --ansi"
         ]

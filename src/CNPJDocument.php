@@ -4,8 +4,8 @@ namespace Tongedev\RfbDocument;
 
 class CNPJDocument extends Document
 {
-   protected int $size = 14;
-   
+    protected int $size = 14;
+
     protected int $prefixSize = 12;
 
     protected string $format = '%s%s.%s%s%s.%s%s%s/%s%s%s%s-%s%s';
