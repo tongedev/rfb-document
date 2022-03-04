@@ -1,0 +1,58 @@
+name: CI 
+
+on:
+
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - '**.gitignore'
+
+jobs:
+  php-linter:
+    runs-on: ubuntu-latest
+    name: Linter
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: mbstring, dom, fileinfo, mysql
+        tools: composer:v2
+        coverage: none
+
+    - name: Install PHP dependencies
+      run: composer update --prefer-stable --ignore-platform-req=php --no-interaction --no-progress
+
+    - name: Running linter
+      run: vendor/bin/php-cs-fixer fix -v --dry-run
+  tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        php: ['8.0','8.1']
+        dependency-version: [prefer-stable]
+
+    name: Tests with PHP ${{ matrix.php }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php }}
+        extensions: mbstring, dom, fileinfo, mysql
+        tools: composer:v2
+        coverage: none
+
+    - name: Install PHP dependencies
+      run: composer install --ignore-platform-req=php --no-interaction --no-progress
+
+    - name: Running tests
+      run: vendor/bin/pest --colors=always
