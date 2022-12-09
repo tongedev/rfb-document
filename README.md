@@ -88,7 +88,7 @@ E os demais métodos:
 ```php
 $cpf = CPF::generate(true); // retorno: xxx.xxx.xxx-xx (cpf formatado)
 
-$cpf = CPF::sanitized('xxx.xxx.xxx-xx'); // retorno: xxxxxxxxxxx (cpf sanitizado)
+$cpf = CPF::sanitize('xxx.xxx.xxx-xx'); // retorno: xxxxxxxxxxx (cpf sanitizado)
 
 $cpf = CPF::format('xxxxxxxxxxx'); //retorno: xxx.xxx.xxx-xx (cpf formatado)
 
