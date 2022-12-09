@@ -13,7 +13,7 @@
 
 **RFB Document** é um pacote que te ajuda a lidar com números de cadastro da Receita Federal do Brasil, CPF (cadastro de pessoa física) e CNPJ (cadastro nacional de pessoa jurídica). Através dele é possível gerar números de CPF/CNPJ válidos, validar um número existente e formatá-los. Tudo de maneira simples e prática.
 
-> ❗ IMPORTANTE:  Este pacote não realiza nenhuma consulta na Receita Federal, portanto, não verifica a situação atual do documento ou se o mesmo está atrelado a uma pessoa ou empresa específica. Toda a checagem é baseada no algorítimo utilizado para gerar os números de cadastro.
+> ❗ IMPORTANTE:  Este pacote não realiza nenhuma consulta na Receita Federal, portanto, não verifica a situação atual do documento ou se o mesmo está atrelado a uma pessoa ou empresa específica. Toda a checagem é baseada no algoritmo utilizado para gerar os números de cadastro.
 
 ## Requisitos
 
