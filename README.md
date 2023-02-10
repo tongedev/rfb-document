@@ -109,7 +109,7 @@ $cpf = CPF::format('123456ASasdfas'); // esse código irá gerar uma exceção d
 
 Obrigado por considerar contribuir para o RFB Document. Tudo sobre contribuições está descrito [aqui](CONTRIBUTING.md).
 
-👋 Siga o autor [@tongedev](https://twitter.com/tongedev) no Twitter para saber das últimas novidades e conhecer outros projetos. Diga oi!
+👋 Siga o autor [@devatreides](https://twitter.com/tongedev) no Twitter para saber das últimas novidades e conhecer outros projetos. Diga oi!
 
 ## Licença
 
